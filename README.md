@@ -1,8 +1,8 @@
 # Security Repo <f.ribeiro> 🛡️
 
 ![GitHub](https://img.shields.io/badge/Status-Em%20construção-yellow?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/seu-usuario/seu-repositorio?style=for-the-badge)
-![GitHub stars](https://img.shields.io/github/stars/seu-usuario/seu-repositorio?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/fribeir0/learned/?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/fribeir0/learned/?style=for-the-badge)
 
 👋 Olá! Este repositório é o registro da minha jornada de aprendizado em **Cybersecurity**. Aqui, compartilho conteúdos, documentações e projetos que estou desenvolvendo enquanto exploro o mundo da segurança digital.
 
