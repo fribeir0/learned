@@ -21,13 +21,13 @@ Este espaço está organizado para documentar:
 
 ## 🚀 Sobre Mim
 
-Meu nome é **[Seu Nome]**, e sou um entusiasta de cybersecurity em constante aprendizado. Estou focado em desenvolver habilidades em áreas como pentesting, análise forense e segurança de redes.
+Meu nome é **Felipe**, e sou um entusiasta de cybersecurity em constante aprendizado. Estou focado em desenvolver habilidades em áreas como pentesting, análise forense e segurança de redes.
 
 ### 📞 Contato
 
-- **LinkedIn**: [Seu Nome](https://www.linkedin.com/in/seu-usuario/)
-- **E-mail**: seu-email@exemplo.com
-- **GitHub**: [seu-usuario](https://github.com/seu-usuario)
+- **LinkedIn**: [Felipe](https://www.linkedin.com/in/felipe-ribeiro-ti)
+- **Creddly**  [Badges](https://www.credly.com/users/felipe-ribeiro-de-carvalho)
+- **GitHub**: [f.ribeiro](https://github.com/f.ribeir0)
 
 ---
 
