@@ -1,2 +1,2 @@
 # Security Repo <f.ribeiro>
-my journey learning all somethings about sec
+my journey learning somethings about sec
