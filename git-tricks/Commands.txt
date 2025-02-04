@@ -1,0 +1,36 @@
+Commands
+	Git -v = Verifica a versao do git
+	Git  help -a
+	Git –help
+	Git log = verifica todas mudancas e commit q vc fez
+ 	Git config –global user.name “fribeir0”
+	Git config –global user.email “fbdawd@gmail.com”
+	Git init  > Inicia um repositorio na pasta
+	Git add <arquivo> = adiciona o arquivo no repo do seu git e realiza as mudanças
+	Git push > atualiza o repo do github
+	Git pull > atualiza o repo no git local
+	Git merge > junta duas branches para atualizar oq foi alterado
+	Git rebase master > atualiza a base de uma branch para a branch master ou outra 
+Git commit -m “Mudança xxx” = faz um commit no repo de mudança de tal arquivo
+	PS: para fazer um commit o arquivo tem que ser modificado… 
+
+	Git rm <arquivo> = usado para avisar ao rep que voce excluiu algo
+	
+	Git mv <arquivo> = usado para avisar paro o rep que moveu algo
+
+	Git revert Head = Reverte para 1 atras da head
+
+	Git revert Head~2 = reverte para 2 atras da head
+
+	Git revert tag
+
+	Git revert hash
+
+	Git branch <nome da feature> = trabalha uma feature especifica e e possivel trabalhar    cm varios pessoas
+
+
+	Git branch = lista todas as branch
+
+	Git merge <nome da feature> = ele traz a feature que estava numa outra branch para o master
+
+	Git checkout <nome da feature ou branch> = voce consegue voltar ou entrar numa branch de para testar
