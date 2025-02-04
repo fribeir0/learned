@@ -27,7 +27,7 @@ Meu nome é **Felipe**, e sou um entusiasta de cybersecurity em constante aprend
 
 - **LinkedIn**: [Felipe](https://www.linkedin.com/in/felipe-ribeiro-ti)
 - **Creddly**  [Badges](https://www.credly.com/users/felipe-ribeiro-de-carvalho)
-- **GitHub**: [f.ribeiro](https://github.com/f.ribeir0)
+- **GitHub**: [fribeir0](https://github.com/fribeir0)
 
 ---
 
