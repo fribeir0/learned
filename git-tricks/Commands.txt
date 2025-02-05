@@ -11,7 +11,7 @@ Commands
 	Git pull > atualiza o repo no git local
 	Git merge > junta duas branches para atualizar oq foi alterado
 	Git rebase master > atualiza a base de uma branch para a branch master ou outra 
-Git commit -m “Mudança xxx” = faz um commit no repo de mudança de tal arquivo
+	Git commit -m “Mudança xxx” = faz um commit no repo de mudança de tal arquivo
 	PS: para fazer um commit o arquivo tem que ser modificado… 
 
 	Git rm <arquivo> = usado para avisar ao rep que voce excluiu algo
@@ -34,3 +34,7 @@ Git commit -m “Mudança xxx” = faz um commit no repo de mudança de tal arqu
 	Git merge <nome da feature> = ele traz a feature que estava numa outra branch para o master
 
 	Git checkout <nome da feature ou branch> = voce consegue voltar ou entrar numa branch de para testar
+
+	Git branch <nome da brach> - cria uma branch para outra versao
+
+	Git push -u origin <nomedabranch> - faz um push pro GitHub com uma branch
