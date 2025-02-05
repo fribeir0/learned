@@ -1,3 +1,5 @@
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
 # Comandos Git Essenciais 🛠️
 
 Este guia reúne os comandos Git mais úteis que utilizo no meu dia a dia para gerenciar repositórios e versionamento de código. Cada comando é explicado de forma clara e prática.
