@@ -21,7 +21,7 @@ pip install --break-system-packages git-dumper
 git-dumper -h
 ```
 
-#$ Dumpar .git 
+## Dumpar .git 
 ```bash
 git dumper <URL> <DIR-OUTPUT>
 ```
