@@ -37,4 +37,4 @@ Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICEN
 
 ---
 
-✨ **Vamos construir um mundo digital mais seguro juntos!** ✨
+//<f.ribeir0>
