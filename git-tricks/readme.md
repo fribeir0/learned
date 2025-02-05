@@ -7,11 +7,11 @@ Este guia reúne os comandos Git mais úteis que utilizo no meu dia a dia para g
 ## 🔍 Comandos Básicos
 
 ### Verificar Versão do Git
-```bash
-git -v
-Verifica a versão instalada do Git.
 
-Ajuda e Documentação
+git -v
+Verifica a versão instalada do Git. 
+
+### Ajuda e Documentação
 bash
 Copy
 git help -a
