@@ -12,17 +12,20 @@ git -v
 Verifica a versão instalada do Git. 
 ```
 ### Ajuda e Documentação
+
 ```bash
 git help -a
 git --help
 Exibe a lista completa de comandos ou a documentação oficial do Git.
 ```
-##Inicializar um Repositório
+## Inicializar um Repositório
+
 ```bash
 git init
 Inicializa um novo repositório Git na pasta atual.
 ```
-##Configurar Usuário
+## Configurar Usuário
+
 ```bash
 git config --global user.name "Seu Nome"
 git config --global user.email "seu-email@exemplo.com"
