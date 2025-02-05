@@ -31,7 +31,7 @@ git config --global user.name "Seu Nome"
 git config --global user.email "seu-email@exemplo.com"
 Define o nome e e-mail globais para os commits.
 ```
-##📂 Gerenciamento de Arquivos
+## 📂 Gerenciamento de Arquivos
 Adicionar Arquivos ao Stage
 ```bash
 git add <arquivo>
