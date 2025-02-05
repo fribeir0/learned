@@ -1,5 +1,5 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-<img src="https://github.githubassets.com/images/icons/emoji/octocat.png" alt="Octocat" width="100"/>
+<img src="https://i.imgur.com/7eR7Pan.png" alt="Octocat" width="100"/>
 
 # Comandos Git Essenciais 🛠️
 
