@@ -3,9 +3,10 @@
 
 Nesta ferramenta voce consegue dumpar os .git de um site caso esteja exposto
 
-##Requisitos
+## Requisitos
 
 Python3 > ```bash apt install python3```
+
 Pip > ```bash apt install python3-pip```
 
 ## Baixar Pacote
