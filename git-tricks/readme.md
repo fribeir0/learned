@@ -37,29 +37,29 @@ Adicionar Arquivos ao Stage
 git add <arquivo>
 Adiciona um arquivo específico ao stage (área de preparação) para commit.
 ```
-##Remover Arquivos
+## Remover Arquivos
 ```bash
 git rm <arquivo>
 Remove um arquivo do repositório e o marca como excluído no próximo commit.
 ```
-##Mover ou Renomear Arquivos
+## Mover ou Renomear Arquivos
 ```bash
 git mv <arquivo>
 Move ou renomeia um arquivo e atualiza o repositório.
 ```
-##💾 Commits e Histórico
+## 💾 Commits e Histórico
 Verificar Histórico de Commits
 ```bash
 git log
 Exibe o histórico de commits com detalhes como autor, data e mensagem.
 ```
-##Fazer um Commit
+## Fazer um Commit
 ```bash
 git commit -m "Mensagem do commit"
 Registra as alterações no repositório com uma mensagem descritiva.
 Observação: Para fazer um commit, os arquivos precisam estar no stage (usando git add).
 ```
-#Reverter Commits
+## Reverter Commits
 ```bash
 git revert HEAD
 Reverte o último commit.
@@ -72,58 +72,53 @@ Reverte o commit de duas posições atrás do HEAD.
 git revert <hash-do-commit>
 Reverte um commit específico pelo seu hash.
 ```
-##🔄 Sincronização com Repositórios Remotos
+## 🔄 Sincronização com Repositórios Remotos
 Enviar Alterações para o Repositório Remoto
 ```bash
 git push
 Envia as alterações do repositório local para o remoto.
 ```
-##Atualizar Repositório Local
+## Atualizar Repositório Local
 ```bash
 git pull
 Atualiza o repositório local com as alterações do repositório remoto.
 ```
-##🌿 Branches (Ramificações)
+## 🌿 Branches (Ramificações)
 Criar uma Nova Branch
 ```bash
 git branch <nome-da-branch>
 Cria uma nova branch para trabalhar em uma funcionalidade específica.
 ```
-##Listar Todas as Branches
+## Listar Todas as Branches
 ```bash
 git branch
 Lista todas as branches do repositório.
 ```
-##Alternar entre Branches
+## Alternar entre Branches
 ```bash
-Copy
 git checkout <nome-da-branch>
 Muda para a branch especificada.
 ```
-##Mesclar Branches
+## Mesclar Branches
 ```bash
-Copy
 git merge <nome-da-branch>
 Combina as alterações de uma branch com a branch atual (geralmente a main ou master).
 ```
-##Atualizar uma Branch com Rebase
+## Atualizar uma Branch com Rebase
 ```bash
-Copy
 git rebase master
 Atualiza a branch atual com as alterações da branch master.
 ```
-##🛠️ Comandos Adicionais
+## 🛠️ Comandos Adicionais
 Verificar Status do Repositório
 ```bash
-Copy
 git status
 Exibe o estado atual do repositório (arquivos modificados, em stage, etc.).
 ```
-##Clonar um Repositório
+## Clonar um Repositório
 ```bash
-Copy
 git clone <url-do-repositorio>
 Cria uma cópia local de um repositório remoto.
 ```
-##📜 Licença
+## 📜 Licença
 Este guia está licenciado sob a MIT License. Sinta-se à vontade para usar e compartilhar!
