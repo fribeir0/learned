@@ -1,0 +1,46 @@
+# FerroxBuster
+
+FerroxBuster é uma ferramenta para enumeração de diretórios e arquivos em servidores web, permitindo identificar conteúdos ocultos e possíveis vulnerabilidades.
+
+## Características
+- Rápida e eficiente na enumeração de diretórios
+- Suporte a múltiplos métodos HTTP
+- Personalização de cabeçalhos e User-Agent
+- Filtragem de respostas com base no código HTTP
+- Suporte a proxies para anonimização
+
+## Instalação
+### Via APT
+```bash
+sudo apt update && sudo apt install ferroxbuster
+```
+
+### Via Git
+```bash
+git clone https://github.com/seu-usuario/ferroxbuster.git
+cd ferroxbuster
+pip install -r requirements.txt
+```
+
+## Uso
+```bash
+ferroxbuster.py -u https://exemplo.com -w wordlist.txt
+```
+
+### Opções
+- `-u`, `--url`: Define a URL alvo
+- `-w`, `--wordlist`: Especifica a wordlist a ser usada
+- `-t`, `--threads`: Define o número de threads (padrão: 10)
+- `-x`, `--extensions`: Define extensões a serem testadas (ex: php, html)
+
+## Exemplo de Uso
+```bash
+python ferroxbuster.py -u https://site.com -w wordlist.txt -t 20 -x php,html
+```
+
+## Contribuição
+Sinta-se à vontade para contribuir abrindo uma issue ou enviando um pull request!
+
+## Licença
+Este projeto está licenciado sob a MIT License.
+
