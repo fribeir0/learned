@@ -1,2 +1,53 @@
-"start"
-"end"
+#!/bin/bash
+
+echo -e "\033[1;1;35m"
+
+echo "-------------TRACEHUNTER-SCRIPT--------------"
+echo "    ___       _  _                    _      "
+echo "   / __)     | |(_)                  | |     "
+echo " _| |__ _____| | _ ____  _____    ___| |__   "
+echo " (_   __) ___ | || |  _ \| ___ |  /___)  _ \ "
+echo "  | |  | ____| || | |_| | ____|_|___ | | | | "
+echo "  |_|  |_____)\_)_|  __/|_____|_|___/|_| |_| "
+echo "                  |_|                        "
+echo "                                             "
+echo "-------------TRACEHUNTER-SCRIPT--------------"
+echo -e "\033[1;1;35m"
+if [[ $EUID -ne 0 ]]; then
+   echo -e "Este Script precisa ser executado como root"
+   exit 1
+fi
+
+echo -e "Script Iniciado....."
+COLLECTED_DIR=$(pwd)
+date=$(date)
+hostname=$(hostname)
+mkdir -p ./collected_files
+echo -e "Diretorio criado em $COLLECTED_DIR/collected_files"
+echo -e "\033[2;2;35mColetando arquivos do sistema.....\033[0m"
+echo -e "\033[1;1;35mListando informacoes sobre disco e particoes..... \033[0m"
+disk_info=$(lsblk)
+echo $disk_info > ./collected_files/disk_info.txt
+echo -e "\033[1;1;35mColetando informacoes da rede..... \033[0m"
+active_connections=$(ss)
+echo $active_connections > ./collected_files/active_connections.txt
+open_ports=$(netstat -tulnp)
+echo $netstat > ./collected_files/open_ports.txt
+echo -e "\033[1;1;35mColetando lista de processos......\033[0m"
+process=$(ps)
+echo $process > ./collected_files/process_list.txt
+echo -e "\033[1;1;35mColetando logs do sistema.......\033[0m"
+cp_log () {
+    cp -r "$1" "$2"
+}
+cp_log "/var/log/syslog" "$COLLECTED_DIR/collected_files/syslog.log"
+cp_log "/var/log/auth.log" "$COLLECTED_DIR/collected_files/auth.log"
+cp_log "/var/log/dmesg" "$COLLECTED_DIR/collected_files/dmesg.log"
+
+echo -e "\033[1;1;35mColetando arquivos de configuracao.......\033[0m"
+cp_log /etc "$COLLECTED_DIR/collected_files/etc"
+echo -e "\033[1;1;35mListando o diretorio raiz......\033[0m"
+ls_raiz=$(ls -la)
+echo $ls_raiz > "$COLLECTED_DIR/collected_files/root_dir_list.txt"
+echo -e "\033[1;1;35mOs arquivos estao sendo compactados em: $COLLECTED_DIR\033[0m"
+tar -cvzf "TRACEHUNTER_${hostname}_$(date +%Y-%m-%d-%H-%M-%S).tar.gz" -C "./collected_files" . > /dev/null
