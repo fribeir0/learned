@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escaneamento de Rede</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Escaneamento de Rede</h1>
+        <p>Clique no botão abaixo para iniciar o escaneamento da rede.</p>
+        <form action="{{ url_for('scan_network') }}" method="get">
+            <button type="submit">Iniciar Escaneamento</button>
+        </form>
+    </div>
+</body>
+</html>
