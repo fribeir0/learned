@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Scanner</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Network Scanner</h1>
+        
+        <div class="controls">
+            <button id="scanButton" class="btn-scan">Iniciar Scan</button>
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <span>Escaneando...</span>
+            </div>
+            <div id="status-message" class="status">Pronto para escanear</div>
+        </div>
+        
+        <div class="summary">
+            <h2>Resumo</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>Dispositivos</h3>
+                    <div id="total-devices" class="count">0</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Linux</h3>
+                    <div id="linux-count" class="count">0</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Windows</h3>
+                    <div id="windows-count" class="count">0</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Desconhecidos</h3>
+                    <div id="unknown-count" class="count">0</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="devices">
+            <h2>Dispositivos Detectados</h2>
+            <table id="devicesTable" class="devices-table">
+                <thead>
+                    <tr>
+                        <th>IP</th>
+                        <th>MAC</th>
+                        <th>Sistema</th>
+                        <th>Portas</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
