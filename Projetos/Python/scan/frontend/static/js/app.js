@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos da UI
+    const scanTypeSelect = document.getElementById('scan-type');
     const loadingElement = document.getElementById('loading');
     const statusMessage = document.getElementById('status-message');
     const scanButton = document.getElementById('scanButton');
@@ -133,6 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function startScan() {
         if (isScanning) return;
         
+        const scanType = scanTypeSelect.value;
+        if (scanType === 'all' && !confirm('Full port scan (1-65535) may take several minutes. Continue?')) {
+            return;
+        }
+        
         isScanning = true;
         devices = [];
         devicesTable.innerHTML = '';
@@ -141,28 +147,18 @@ document.addEventListener('DOMContentLoaded', function() {
         loadingElement.classList.remove('hidden');
         scanButton.disabled = true;
         stopButton.disabled = false;
-        statusMessage.textContent = 'Iniciando escaneamento...';
+        statusMessage.textContent = `Starting ${scanType} scan...`;
         
         const networkRange = networkRangeInput.value.trim();
         
-        if (!isValidNetworkRange(networkRange)) {
-            handleScanError('Intervalo de rede inválido. Use o formato "192.168.0"');
-            return;
-        }
-        
         if (socket && socket.connected) {
             socket.emit('start_scan', { 
-                network: networkRange 
-            }, (response) => {
-                if (response && response.error) {
-                    handleScanError(response.error);
-                }
+                network: networkRange,
+                scan_type: scanType
             });
-        } else {
-            handleScanError('Não conectado ao servidor. Tentando reconectar...');
-            connectSocket();
         }
     }
+    
     
     function isValidNetworkRange(range) {
         const parts = range.split('.');
@@ -378,3 +374,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+socket.on('scan_update', (data) => {
+    switch(data.type) {
+        case 'port_open':
+            updatePortStatus(data.ip, data.port);
+            break;
+        case 'device_update':
+            updateDevice(data.device);
+            break;
+        // ... outros cases
+    }
+});
+
+function updatePortStatus(ip, port) {
+    const device = devices.find(d => d.ip === ip);
+    if (device && !device.open_ports.includes(port)) {
+        device.open_ports.push(port);
+        updateDevicesTable();
+    }
+}
+
+function updateDevice(device) {
+    const index = devices.findIndex(d => d.ip === device.ip);
+    if (index >= 0) {
+        devices[index] = device;
+    } else {
+        devices.push(device);
+    }
+    updateDevicesTable();
+    updateSummary();
+}
