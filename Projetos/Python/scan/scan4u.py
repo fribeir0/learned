@@ -6,9 +6,10 @@ def scan (ip,ports):
     result = []
 
     for sent, received in ans:
-        if received.haslayer(TCP) and received[TCP].flags == 0x12:
+        if received[TCP].flags == 0x12:
             result.append(received[TCP].sport)
             print("passou")
+            received.show()
         else:
             print(f"Dispositivo recusou conexao na porta: {ports}")
 
