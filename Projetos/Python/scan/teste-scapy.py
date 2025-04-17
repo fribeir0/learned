@@ -8,7 +8,6 @@ linux_count = 0
 microsoft_count = 0
 unknown_count = 0
 
-
 def scan_devices(target):
     broadcast = "ff:ff:ff:ff:ff:ff"
     packet_arp = ARP(pdst=target)
