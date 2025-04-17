@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>6.0</version>
+    <date>2023-11-15T12:00:00Z</date>
+    <groups>
+        <group>
+            <name>Templates/Operating systems</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Windows Server Security Advanced Monitoring</template>
+            <name>Windows Server Security Advanced Monitoring</name>
+            <description>Advanced security monitoring for Windows Server including logged in users, failed attempts, and security events</description>
+            <groups>
+                <group>
+                    <name>Templates/Operating systems</name>
+                </group>
+            </groups>
+            <items>
+                <!-- Monitoramento de usuários logados -->
+                <item>
+                    <name>Number of logged in users</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>perf_counter[\Security System-Wide Statistics\NTLM Logons]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <trends>365d</trends>
+                    <value_type>NUMERIC</value_type>
+                    <units>users</units>
+                    <description>Number of currently logged in users via NTLM</description>
+                </item>
+                
+                <item>
+                    <name>Kerberos logon attempts</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>perf_counter[\Security System-Wide Statistics\Kerberos Logons]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <trends>365d</trends>
+                    <value_type>NUMERIC</value_type>
+                    <units>attempts</units>
+                </item>
+                
+                <!-- Tentativas de login falhadas -->
+                <item>
+                    <name>Failed login attempts (total)</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>perf_counter[\Security System-Wide Statistics\Logon Failures]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <trends>365d</trends>
+                    <value_type>NUMERIC</value_type>
+                    <units>failures</units>
+                </item>
+                
+                <item>
+                    <name>Failed NTLM logon attempts</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>perf_counter[\Security System-Wide Statistics\NTLM Logon Failures]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <trends>365d</trends>
+                    <value_type>NUMERIC</value_type>
+                    <units>failures</units>
+                </item>
+                
+                <!-- Monitoramento de eventos de segurança -->
+                <item>
+                    <name>Security Event Log: Account Lockouts</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>eventlog[Security,,,"EventID=4740"]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <value_type>LOG</value_type>
+                    <logtimefmt>yyyy-MM-dd HH:mm:ss</logtimefmt>
+                    <description>Monitor account lockout events (Event ID 4740)</description>
+                </item>
+                
+                <item>
+                    <name>Security Event Log: Failed Logons</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>eventlog[Security,,,"EventID=4625"]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <value_type>LOG</value_type>
+                    <logtimefmt>yyyy-MM-dd HH:mm:ss</logtimefmt>
+                    <description>Monitor failed logon attempts (Event ID 4625)</description>
+                </item>
+                
+                <item>
+                    <name>Security Event Log: Successful Logons</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>eventlog[Security,,,"EventID=4624"]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <value_type>LOG</value_type>
+                    <logtimefmt>yyyy-MM-dd HH:mm:ss</logtimefmt>
+                    <description>Monitor successful logon events (Event ID 4624)</description>
+                </item>
+                
+                <item>
+                    <name>Security Event Log: Privilege Use</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>eventlog[Security,,,"EventID=4672,4673,4674"]</key>
+                    <delay>1m</delay>
+                    <history>7d</history>
+                    <value_type>LOG</value_type>
+                    <logtimefmt>yyyy-MM-dd HH:mm:ss</logtimefmt>
+                    <description>Monitor privilege use events</description>
+                </item>
+                
+                <!-- Monitoramento de políticas de segurança -->
+                <item>
+                    <name>Password Policy: Minimum Length</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>wmi.get[root\RSOP\Computer,"RSOP_SecuritySettingNumeric",{"KeyName='MinimumPasswordLength' and precedence=1"},"Setting"]</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>365d</trends>
+                    <value_type>NUMERIC</value_type>
+                    <units>characters</units>
+                </item>
+                
+                <item>
+                    <name>Account Lockout Threshold</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>wmi.get[root\RSOP\Computer,"RSOP_SecuritySettingNumeric",{"KeyName='LockoutBadCount' and precedence=1"},"Setting"]</key>
+                    <delay>1h</delay>
+                    <history>7d</history>
+                    <trends>365d</trends>
+                    <value_type>NUMERIC</value_type>
+                    <units>attempts</units>
+                </item>
+            </items>
+            
+            <triggers>
+                <!-- Triggers para tentativas falhadas -->
+                <trigger>
+                    <name>High number of failed logon attempts on {HOST.NAME}</name>
+                    <expression>{Windows Server Security Advanced Monitoring:perf_counter[\Security System-Wide Statistics\Logon Failures].avg(5m)}&gt;10</expression>
+                    <priority>WARNING</priority>
+                    <description>More than 10 failed logon attempts in the last 5 minutes detected</description>
+                </trigger>
+                
+                <trigger>
+                    <name>Possible brute force attack on {HOST.NAME}</name>
+                    <expression>{Windows Server Security Advanced Monitoring:perf_counter[\Security System-Wide Statistics\Logon Failures].avg(5m)}&gt;30</expression>
+                    <priority>HIGH</priority>
+                    <description>Possible brute force attack detected - more than 30 failed logon attempts in 5 minutes</description>
+                </trigger>
+                
+                <!-- Triggers para contas bloqueadas -->
+                <trigger>
+                    <name>Account lockout detected on {HOST.NAME}</name>
+                    <expression>{Windows Server Security Advanced Monitoring:eventlog[Security,,,"EventID=4740"].nodata(5m)}=0</expression>
+                    <priority>WARNING</priority>
+                    <description>An account was locked out on the system</description>
+                </trigger>
+                
+                <!-- Triggers para uso de privilégios -->
+                <trigger>
+                    <name>Privileged account used interactively on {HOST.NAME}</name>
+                    <expression>{Windows Server Security Advanced Monitoring:eventlog[Security,,,"EventID=4672"].nodata(5m)}=0</expression>
+                    <priority>WARNING</priority>
+                    <description>A privileged account was used for interactive logon</description>
+                </trigger>
+                
+                <!-- Trigger para mudanças de política -->
+                <trigger>
+                    <name>Password policy changed on {HOST.NAME}</name>
+                    <expression>{Windows Server Security Advanced Monitoring:wmi.get[root\RSOP\Computer,"RSOP_SecuritySettingNumeric",{"KeyName='MinimumPasswordLength' and precedence=1"},"Setting"].diff()}=1</expression>
+                    <priority>INFORMATION</priority>
+                    <description>The password policy minimum length has changed</description>
+                </trigger>
+            </triggers>
+            
+            <graphs>
+                <graph>
+                    <name>Logon Activity</name>
+                    <width>900</width>
+                    <height>200</height>
+                    <graph_items>
+                        <graph_item>
+                            <sortorder>0</sortorder>
+                            <drawtype>FILLED_REGION</drawtype>
+                            <color>00AA00</color>
+                            <item>
+                                <host>Windows Server Security Advanced Monitoring</host>
+                                <key>perf_counter[\Security System-Wide Statistics\NTLM Logons]</key>
+                            </item>
+                        </graph_item>
+                        <graph_item>
+                            <sortorder>1</sortorder>
+                            <drawtype>GRADIENT_LINE</drawtype>
+                            <color>AA0000</color>
+                            <item>
+                                <host>Windows Server Security Advanced Monitoring</host>
+                                <key>perf_counter[\Security System-Wide Statistics\Logon Failures]</key>
+                            </item>
+                        </graph_item>
+                    </graph_items>
+                </graph>
+                
+                <graph>
+                    <name>Security Events</name>
+                    <width>900</width>
+                    <height>200</height>
+                    <graph_items>
+                        <graph_item>
+                            <sortorder>0</sortorder>
+                            <drawtype>BAR</drawtype>
+                            <color>3333FF</color>
+                            <item>
+                                <host>Windows Server Security Advanced Monitoring</host>
+                                <key>eventlog[Security,,,"EventID=4624"].count(1h)</key>
+                            </item>
+                        </graph_item>
+                        <graph_item>
+                            <sortorder>1</sortorder>
+                            <drawtype>BAR</drawtype>
+                            <color>FF3333</color>
+                            <item>
+                                <host>Windows Server Security Advanced Monitoring</host>
+                                <key>eventlog[Security,,,"EventID=4625"].count(1h)</key>
+                            </item>
+                        </graph_item>
+                    </graph_items>
+                </graph>
+            </graphs>
+            
+            <macros>
+                <macro>
+                    <macro>{$SECURITY_EVENT_THRESHOLD}</macro>
+                    <value>10</value>
+                    <description>Threshold for security events per minute</description>
+                </macro>
+                <macro>
+                    <macro>{$FAILED_LOGON_THRESHOLD}</macro>
+                    <value>5</value>
+                    <description>Threshold for failed logon attempts per minute</description>
+                </macro>
+            </macros>
+            
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Active User Sessions Discovery</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>wmi.get[root\cimv2,"SELECT * FROM Win32_LogonSession WHERE LogonType=2"]</key>
+                    <delay>5m</delay>
+                    <filter>
+                        <evaltype>AND</evaltype>
+                        <conditions>
+                            <condition>
+                                <macro>{#LOGONTYPE}</macro>
+                                <value>2</value>
+                                <operator>EQ</operator>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Session duration for {#USERNAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>wmi.get[root\cimv2,"SELECT * FROM Win32_LogonSession WHERE LogonId='{#LOGONID}'","StartTime"]</key>
+                            <delay>1m</delay>
+                            <value_type>NUMERIC</value_type>
+                            <units>seconds</units>
+                            <applications>
+                                <application>
+                                    <name>User Sessions</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
