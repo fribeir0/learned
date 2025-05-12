@@ -6,7 +6,7 @@ from routes.metabigor_route import router as metabigor_router
 from routes.history_routes import router as history_router
 from utils.logger import setup_logger
 
-# Inicializando o aplicativo FastAPI
+# Inicializando a aplicação FastAPI
 app = FastAPI()
 
 # Configuração de log
@@ -27,6 +27,7 @@ app.include_router(selective_router, prefix="/tool", tags=["Tools"])
 app.include_router(metabigor_router, prefix="/metabigor", tags=["Metabigor"])
 app.include_router(history_router, prefix="/history", tags=["History"])
 
+# Rota de teste simples para verificar se a API está funcionando
 @app.get("/")
 def read_root():
     return {"message": "API is working!"}
