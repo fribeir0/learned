@@ -8,6 +8,7 @@ import (
 func main () {
 	router := gin.Default()
 	router.POST ("/scan/subfinder" , controller.RunSubFinder)
+	router.POST ("/scan/naabu", controller.RunNaabu)
 	router.Run("localhost:1421")
 }
 
