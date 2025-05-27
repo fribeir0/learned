@@ -1,10 +1,10 @@
 package utils
 
 import (
-	"os/exec"
+    "os/exec"
 )
 
-func ExecuteCommand (name string, args ...string) ([]byte,error){
-	cmd:= exec.Command(name,args...)
-	return cmd.Output()
+func ExecuteCommand(name string, args ...string) ([]byte, error) {
+    cmd := exec.Command(name, args...)
+    return cmd.CombinedOutput()
 }
